@@ -55,12 +55,69 @@ input AuthorInput {
   picture: ID
 }
 
+type Collection {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String
+}
+
+type CollectionAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type CollectionConnection {
+  values: [Collection]
+  groupBy: CollectionGroupBy
+  aggregate: CollectionAggregator
+}
+
+type CollectionConnectionCreated_at {
+  key: DateTime
+  connection: CollectionConnection
+}
+
+type CollectionConnectionId {
+  key: ID
+  connection: CollectionConnection
+}
+
+type CollectionConnectionName {
+  key: String
+  connection: CollectionConnection
+}
+
+type CollectionConnectionUpdated_at {
+  key: DateTime
+  connection: CollectionConnection
+}
+
+type CollectionGroupBy {
+  id: [CollectionConnectionId]
+  created_at: [CollectionConnectionCreated_at]
+  updated_at: [CollectionConnectionUpdated_at]
+  name: [CollectionConnectionName]
+}
+
+input CollectionInput {
+  name: String
+}
+
 input createAuthorInput {
   data: AuthorInput
 }
 
 type createAuthorPayload {
   author: Author
+}
+
+input createCollectionInput {
+  data: CollectionInput
+}
+
+type createCollectionPayload {
+  collection: Collection
 }
 
 input createPostInput {
@@ -117,6 +174,14 @@ type deleteAuthorPayload {
   author: Author
 }
 
+input deleteCollectionInput {
+  where: InputID
+}
+
+type deleteCollectionPayload {
+  collection: Collection
+}
+
 input deletePostInput {
   where: InputID
 }
@@ -154,6 +219,10 @@ input editAuthorInput {
   picture: ID
 }
 
+input editCollectionInput {
+  name: String
+}
+
 input editFileInput {
   name: String
   alternativeText: String
@@ -189,6 +258,7 @@ input editProductInput {
   image: [ID]
   price: Float
   count: Int
+  collection: ID
 }
 
 input editRoleInput {
@@ -245,12 +315,15 @@ scalar JSON
 """The `Long` scalar type represents 52-bit integers"""
 scalar Long
 
-union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Author | AuthorConnection | AuthorAggregator | AuthorGroupBy | AuthorConnectionId | AuthorConnectionCreated_at | AuthorConnectionUpdated_at | AuthorConnectionName | AuthorConnectionPicture | createAuthorPayload | updateAuthorPayload | deleteAuthorPayload | Post | PostConnection | PostAggregator | PostGroupBy | PostConnectionId | PostConnectionCreated_at | PostConnectionUpdated_at | PostConnectionTitle | PostConnectionContent | PostConnectionExcerpt | PostConnectionCoverImage | PostConnectionDate | PostConnectionSlug | PostConnectionAuthor | PostConnectionStatus | createPostPayload | updatePostPayload | deletePostPayload | Product | ProductConnection | ProductAggregator | ProductAggregatorSum | ProductAggregatorAvg | ProductAggregatorMin | ProductAggregatorMax | ProductGroupBy | ProductConnectionId | ProductConnectionCreated_at | ProductConnectionUpdated_at | ProductConnectionName | ProductConnectionDescription | ProductConnectionPrice | ProductConnectionCount | createProductPayload | updateProductPayload | deleteProductPayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | createUserPayload | updateUserPayload | deleteUserPayload
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Author | AuthorConnection | AuthorAggregator | AuthorGroupBy | AuthorConnectionId | AuthorConnectionCreated_at | AuthorConnectionUpdated_at | AuthorConnectionName | AuthorConnectionPicture | createAuthorPayload | updateAuthorPayload | deleteAuthorPayload | Collection | CollectionConnection | CollectionAggregator | CollectionGroupBy | CollectionConnectionId | CollectionConnectionCreated_at | CollectionConnectionUpdated_at | CollectionConnectionName | createCollectionPayload | updateCollectionPayload | deleteCollectionPayload | Post | PostConnection | PostAggregator | PostGroupBy | PostConnectionId | PostConnectionCreated_at | PostConnectionUpdated_at | PostConnectionTitle | PostConnectionContent | PostConnectionExcerpt | PostConnectionCoverImage | PostConnectionDate | PostConnectionSlug | PostConnectionAuthor | PostConnectionStatus | createPostPayload | updatePostPayload | deletePostPayload | Product | ProductConnection | ProductAggregator | ProductAggregatorSum | ProductAggregatorAvg | ProductAggregatorMin | ProductAggregatorMax | ProductGroupBy | ProductConnectionId | ProductConnectionCreated_at | ProductConnectionUpdated_at | ProductConnectionName | ProductConnectionDescription | ProductConnectionPrice | ProductConnectionCount | ProductConnectionCollection | createProductPayload | updateProductPayload | deleteProductPayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | createUserPayload | updateUserPayload | deleteUserPayload
 
 type Mutation {
   createAuthor(input: createAuthorInput): createAuthorPayload
   updateAuthor(input: updateAuthorInput): updateAuthorPayload
   deleteAuthor(input: deleteAuthorInput): deleteAuthorPayload
+  createCollection(input: createCollectionInput): createCollectionPayload
+  updateCollection(input: updateCollectionInput): updateCollectionPayload
+  deleteCollection(input: deleteCollectionInput): deleteCollectionPayload
   createPost(input: createPostInput): createPostPayload
   updatePost(input: updatePostInput): updatePostPayload
   deletePost(input: deletePostInput): deletePostPayload
@@ -397,6 +470,7 @@ type Product {
   description: String
   price: Float
   count: Int
+  collection: Collection
   image(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
 }
 
@@ -433,6 +507,11 @@ type ProductConnection {
   values: [Product]
   groupBy: ProductGroupBy
   aggregate: ProductAggregator
+}
+
+type ProductConnectionCollection {
+  key: ID
+  connection: ProductConnection
 }
 
 type ProductConnectionCount {
@@ -478,6 +557,7 @@ type ProductGroupBy {
   description: [ProductConnectionDescription]
   price: [ProductConnectionPrice]
   count: [ProductConnectionCount]
+  collection: [ProductConnectionCollection]
 }
 
 input ProductInput {
@@ -486,12 +566,16 @@ input ProductInput {
   image: [ID]
   price: Float
   count: Int
+  collection: ID
 }
 
 type Query {
   author(id: ID!): Author
   authors(sort: String, limit: Int, start: Int, where: JSON): [Author]
   authorsConnection(sort: String, limit: Int, start: Int, where: JSON): AuthorConnection
+  collection(id: ID!): Collection
+  collections(sort: String, limit: Int, start: Int, where: JSON): [Collection]
+  collectionsConnection(sort: String, limit: Int, start: Int, where: JSON): CollectionConnection
   post(id: ID!): Post
   posts(sort: String, limit: Int, start: Int, where: JSON): [Post]
   postsConnection(sort: String, limit: Int, start: Int, where: JSON): PostConnection
@@ -531,6 +615,15 @@ input updateAuthorInput {
 
 type updateAuthorPayload {
   author: Author
+}
+
+input updateCollectionInput {
+  where: InputID
+  data: editCollectionInput
+}
+
+type updateCollectionPayload {
+  collection: Collection
 }
 
 input updatePostInput {

@@ -31,6 +31,9 @@
     },
     "count": {
       "type": "integer"
+    },
+    "collection": {
+      "model": "collection"
     }
   }
 }
