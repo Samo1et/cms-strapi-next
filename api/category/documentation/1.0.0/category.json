@@ -585,6 +585,12 @@
                 "type": "string"
               }
             }
+          },
+          "slugName": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "uid"
           }
         }
       },
@@ -592,6 +598,12 @@
         "properties": {
           "name": {
             "type": "string"
+          },
+          "slugName": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "uid"
           }
         }
       }
