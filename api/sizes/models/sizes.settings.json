@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sizes",
+  "info": {
+    "name": "Sizes"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "products": {
+      "collection": "product",
+      "via": "sizes",
+      "dominant": true
+    }
+  }
+}

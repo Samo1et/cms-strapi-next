@@ -1,18 +1,18 @@
 {
   "paths": {
-    "/products": {
+    "/sizes": {
       "get": {
         "deprecated": false,
-        "description": "",
+        "description": "Find all the sizes's records",
         "responses": {
           "200": {
-            "description": "response",
+            "description": "Retrieve sizes document(s)",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Product"
+                    "$ref": "#/components/schemas/Sizes"
                   }
                 }
               }
@@ -51,7 +51,7 @@
         },
         "summary": "",
         "tags": [
-          "Product"
+          "Sizes"
         ],
         "parameters": [
           {
@@ -194,14 +194,14 @@
       },
       "post": {
         "deprecated": false,
-        "description": "Create a new record",
+        "description": "Create a new sizes record",
         "responses": {
           "200": {
-            "description": "response",
+            "description": "Retrieve sizes document(s)",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Product"
+                  "$ref": "#/components/schemas/Sizes"
                 }
               }
             }
@@ -239,7 +239,7 @@
         },
         "summary": "",
         "tags": [
-          "Product"
+          "Sizes"
         ],
         "requestBody": {
           "description": "",
@@ -247,20 +247,20 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewProduct"
+                "$ref": "#/components/schemas/NewSizes"
               }
             }
           }
         }
       }
     },
-    "/products/count": {
+    "/sizes/count": {
       "get": {
         "deprecated": false,
-        "description": "",
+        "description": "Retrieve the numver of sizes documents",
         "responses": {
           "200": {
-            "description": "response",
+            "description": "Retrieve sizes document(s)",
             "content": {
               "application/json": {
                 "schema": {
@@ -306,22 +306,22 @@
         },
         "summary": "",
         "tags": [
-          "Product"
+          "Sizes"
         ],
         "parameters": []
       }
     },
-    "/products/{id}": {
+    "/sizes/{id}": {
       "get": {
         "deprecated": false,
-        "description": "",
+        "description": "Find one sizes record",
         "responses": {
           "200": {
-            "description": "response",
+            "description": "Retrieve sizes document(s)",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Product"
+                  "$ref": "#/components/schemas/Sizes"
                 }
               }
             }
@@ -359,7 +359,7 @@
         },
         "summary": "",
         "tags": [
-          "Product"
+          "Sizes"
         ],
         "parameters": [
           {
@@ -376,14 +376,14 @@
       },
       "put": {
         "deprecated": false,
-        "description": "Update a record",
+        "description": "Update a single sizes record",
         "responses": {
           "200": {
-            "description": "response",
+            "description": "Retrieve sizes document(s)",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Product"
+                  "$ref": "#/components/schemas/Sizes"
                 }
               }
             }
@@ -421,7 +421,7 @@
         },
         "summary": "",
         "tags": [
-          "Product"
+          "Sizes"
         ],
         "requestBody": {
           "description": "",
@@ -429,7 +429,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewProduct"
+                "$ref": "#/components/schemas/NewSizes"
               }
             }
           }
@@ -449,10 +449,10 @@
       },
       "delete": {
         "deprecated": false,
-        "description": "Delete a record",
+        "description": "Delete a single sizes record",
         "responses": {
           "200": {
-            "description": "deletes a single record based on the ID supplied",
+            "description": "deletes a single sizes based on the ID supplied",
             "content": {
               "application/json": {
                 "schema": {
@@ -495,7 +495,7 @@
         },
         "summary": "",
         "tags": [
-          "Product"
+          "Sizes"
         ],
         "parameters": [
           {
@@ -514,7 +514,7 @@
   },
   "components": {
     "schemas": {
-      "Product": {
+      "Sizes": {
         "required": [
           "id"
         ],
@@ -522,96 +522,10 @@
           "id": {
             "type": "string"
           },
-          "name": {
+          "title": {
             "type": "string"
           },
-          "description": {
-            "type": "string"
-          },
-          "image": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id",
-                "name",
-                "hash",
-                "mime",
-                "size",
-                "url",
-                "provider"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "alternativeText": {
-                  "type": "string"
-                },
-                "caption": {
-                  "type": "string"
-                },
-                "width": {
-                  "type": "integer"
-                },
-                "height": {
-                  "type": "integer"
-                },
-                "formats": {
-                  "type": "object"
-                },
-                "hash": {
-                  "type": "string"
-                },
-                "ext": {
-                  "type": "string"
-                },
-                "mime": {
-                  "type": "string"
-                },
-                "size": {
-                  "type": "number"
-                },
-                "url": {
-                  "type": "string"
-                },
-                "previewUrl": {
-                  "type": "string"
-                },
-                "provider": {
-                  "type": "string"
-                },
-                "provider_metadata": {
-                  "type": "object"
-                },
-                "related": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "price": {
-            "type": "number"
-          },
-          "count": {
-            "type": "integer"
-          },
-          "collection": {
-            "required": [
-              "id"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              }
-            }
-          },
-          "sizes": {
+          "products": {
             "type": "array",
             "items": {
               "required": [
@@ -621,10 +535,28 @@
                 "id": {
                   "type": "string"
                 },
-                "title": {
+                "name": {
                   "type": "string"
                 },
-                "products": {
+                "description": {
+                  "type": "string"
+                },
+                "image": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "price": {
+                  "type": "number"
+                },
+                "count": {
+                  "type": "integer"
+                },
+                "collection": {
+                  "type": "string"
+                },
+                "sizes": {
                   "type": "array",
                   "items": {
                     "type": "string"
@@ -635,24 +567,12 @@
           }
         }
       },
-      "NewProduct": {
+      "NewSizes": {
         "properties": {
-          "name": {
+          "title": {
             "type": "string"
           },
-          "description": {
-            "type": "string"
-          },
-          "price": {
-            "type": "number"
-          },
-          "count": {
-            "type": "integer"
-          },
-          "collection": {
-            "type": "string"
-          },
-          "sizes": {
+          "products": {
             "type": "array",
             "items": {
               "type": "string"
@@ -664,7 +584,7 @@
   },
   "tags": [
     {
-      "name": "Product"
+      "name": "Sizes"
     }
   ]
 }

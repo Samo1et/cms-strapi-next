@@ -34,6 +34,10 @@
     },
     "collection": {
       "model": "collection"
+    },
+    "sizes": {
+      "via": "products",
+      "collection": "sizes"
     }
   }
 }

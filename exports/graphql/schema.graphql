@@ -225,6 +225,14 @@ type createRolePayload {
   role: UsersPermissionsRole
 }
 
+input createSizeInput {
+  data: SizeInput
+}
+
+type createSizePayload {
+  size: Sizes
+}
+
 input createUserInput {
   data: UserInput
 }
@@ -295,6 +303,14 @@ type deleteRolePayload {
   role: UsersPermissionsRole
 }
 
+input deleteSizeInput {
+  where: InputID
+}
+
+type deleteSizePayload {
+  size: Sizes
+}
+
 input deleteUserInput {
   where: InputID
 }
@@ -355,6 +371,7 @@ input editProductInput {
   price: Float
   count: Int
   collection: ID
+  sizes: [ID]
 }
 
 input editRoleInput {
@@ -363,6 +380,11 @@ input editRoleInput {
   type: String
   permissions: [ID]
   users: [ID]
+}
+
+input editSizeInput {
+  title: String
+  products: [ID]
 }
 
 input editUserInput {
@@ -411,7 +433,7 @@ scalar JSON
 """The `Long` scalar type represents 52-bit integers"""
 scalar Long
 
-union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Author | AuthorConnection | AuthorAggregator | AuthorGroupBy | AuthorConnectionId | AuthorConnectionCreated_at | AuthorConnectionUpdated_at | AuthorConnectionName | AuthorConnectionPicture | createAuthorPayload | updateAuthorPayload | deleteAuthorPayload | Category | CategoryConnection | CategoryAggregator | CategoryGroupBy | CategoryConnectionId | CategoryConnectionCreated_at | CategoryConnectionUpdated_at | CategoryConnectionName | CategoryConnectionImage | CategoryConnectionSlugName | CategoryConnectionSlug | createCategoryPayload | updateCategoryPayload | deleteCategoryPayload | Collection | CollectionConnection | CollectionAggregator | CollectionGroupBy | CollectionConnectionId | CollectionConnectionCreated_at | CollectionConnectionUpdated_at | CollectionConnectionName | createCollectionPayload | updateCollectionPayload | deleteCollectionPayload | Post | PostConnection | PostAggregator | PostGroupBy | PostConnectionId | PostConnectionCreated_at | PostConnectionUpdated_at | PostConnectionTitle | PostConnectionContent | PostConnectionExcerpt | PostConnectionCoverImage | PostConnectionDate | PostConnectionSlug | PostConnectionAuthor | PostConnectionStatus | createPostPayload | updatePostPayload | deletePostPayload | Product | ProductConnection | ProductAggregator | ProductAggregatorSum | ProductAggregatorAvg | ProductAggregatorMin | ProductAggregatorMax | ProductGroupBy | ProductConnectionId | ProductConnectionCreated_at | ProductConnectionUpdated_at | ProductConnectionName | ProductConnectionDescription | ProductConnectionPrice | ProductConnectionCount | ProductConnectionCollection | createProductPayload | updateProductPayload | deleteProductPayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | createUserPayload | updateUserPayload | deleteUserPayload
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Author | AuthorConnection | AuthorAggregator | AuthorGroupBy | AuthorConnectionId | AuthorConnectionCreated_at | AuthorConnectionUpdated_at | AuthorConnectionName | AuthorConnectionPicture | createAuthorPayload | updateAuthorPayload | deleteAuthorPayload | Category | CategoryConnection | CategoryAggregator | CategoryGroupBy | CategoryConnectionId | CategoryConnectionCreated_at | CategoryConnectionUpdated_at | CategoryConnectionName | CategoryConnectionImage | CategoryConnectionSlugName | CategoryConnectionSlug | createCategoryPayload | updateCategoryPayload | deleteCategoryPayload | Collection | CollectionConnection | CollectionAggregator | CollectionGroupBy | CollectionConnectionId | CollectionConnectionCreated_at | CollectionConnectionUpdated_at | CollectionConnectionName | createCollectionPayload | updateCollectionPayload | deleteCollectionPayload | Post | PostConnection | PostAggregator | PostGroupBy | PostConnectionId | PostConnectionCreated_at | PostConnectionUpdated_at | PostConnectionTitle | PostConnectionContent | PostConnectionExcerpt | PostConnectionCoverImage | PostConnectionDate | PostConnectionSlug | PostConnectionAuthor | PostConnectionStatus | createPostPayload | updatePostPayload | deletePostPayload | Product | ProductConnection | ProductAggregator | ProductAggregatorSum | ProductAggregatorAvg | ProductAggregatorMin | ProductAggregatorMax | ProductGroupBy | ProductConnectionId | ProductConnectionCreated_at | ProductConnectionUpdated_at | ProductConnectionName | ProductConnectionDescription | ProductConnectionPrice | ProductConnectionCount | ProductConnectionCollection | createProductPayload | updateProductPayload | deleteProductPayload | Sizes | SizesConnection | SizesAggregator | SizesGroupBy | SizesConnectionId | SizesConnectionCreated_at | SizesConnectionUpdated_at | SizesConnectionTitle | createSizePayload | updateSizePayload | deleteSizePayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | createUserPayload | updateUserPayload | deleteUserPayload
 
 type Mutation {
   createAuthor(input: createAuthorInput): createAuthorPayload
@@ -429,6 +451,9 @@ type Mutation {
   createProduct(input: createProductInput): createProductPayload
   updateProduct(input: updateProductInput): updateProductPayload
   deleteProduct(input: deleteProductInput): deleteProductPayload
+  createSize(input: createSizeInput): createSizePayload
+  updateSize(input: updateSizeInput): updateSizePayload
+  deleteSize(input: deleteSizeInput): deleteSizePayload
 
   """Create a new role"""
   createRole(input: createRoleInput): createRolePayload
@@ -571,6 +596,7 @@ type Product {
   count: Int
   collection: Collection
   image(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
+  sizes(sort: String, limit: Int, start: Int, where: JSON): [Sizes]
 }
 
 type ProductAggregator {
@@ -666,6 +692,7 @@ input ProductInput {
   price: Float
   count: Int
   collection: ID
+  sizes: [ID]
 }
 
 type Query {
@@ -684,6 +711,9 @@ type Query {
   product(id: ID!): Product
   products(sort: String, limit: Int, start: Int, where: JSON): [Product]
   productsConnection(sort: String, limit: Int, start: Int, where: JSON): ProductConnection
+  size(id: ID!): Sizes
+  sizes(sort: String, limit: Int, start: Int, where: JSON): [Sizes]
+  sizesConnection(sort: String, limit: Int, start: Int, where: JSON): SizesConnection
   files(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
   filesConnection(sort: String, limit: Int, start: Int, where: JSON): UploadFileConnection
   role(id: ID!): UsersPermissionsRole
@@ -705,6 +735,57 @@ input RoleInput {
   type: String
   permissions: [ID]
   users: [ID]
+}
+
+input SizeInput {
+  title: String
+  products: [ID]
+}
+
+type Sizes {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  title: String
+  products(sort: String, limit: Int, start: Int, where: JSON): [Product]
+}
+
+type SizesAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type SizesConnection {
+  values: [Sizes]
+  groupBy: SizesGroupBy
+  aggregate: SizesAggregator
+}
+
+type SizesConnectionCreated_at {
+  key: DateTime
+  connection: SizesConnection
+}
+
+type SizesConnectionId {
+  key: ID
+  connection: SizesConnection
+}
+
+type SizesConnectionTitle {
+  key: String
+  connection: SizesConnection
+}
+
+type SizesConnectionUpdated_at {
+  key: DateTime
+  connection: SizesConnection
+}
+
+type SizesGroupBy {
+  id: [SizesConnectionId]
+  created_at: [SizesConnectionCreated_at]
+  updated_at: [SizesConnectionUpdated_at]
+  title: [SizesConnectionTitle]
 }
 
 """A time string with format: HH:mm:ss.SSS"""
@@ -762,6 +843,15 @@ input updateRoleInput {
 
 type updateRolePayload {
   role: UsersPermissionsRole
+}
+
+input updateSizeInput {
+  where: InputID
+  data: editSizeInput
+}
+
+type updateSizePayload {
+  size: Sizes
 }
 
 input updateUserInput {
